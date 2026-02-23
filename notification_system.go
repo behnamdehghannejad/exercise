@@ -209,6 +209,9 @@ func (s *NotificationService) Send(message, recipient string) error {
 		}
 		err := fmt.Sprintf("failed after max retries by %s at %s | max retries = %d", s.sender.GetType(), v.SentAt.Format(time.RFC3339), v.MaxAttempts)
 		return errors.New(err)
+
+	case *OrderNotification:
+		fmt.Printf(message+" to : %s", recipient)
 	}
 
 	return nil
