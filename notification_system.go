@@ -173,11 +173,11 @@ func (s *NotificationService) Send(message, recipient string) error {
 
 			if err == nil {
 				v.SentAt = time.Now()
-				fmt.Println(message + " " + recipient)
+				fmt.Println(message + " " + recipient + " at " + v.SentAt.Format(time.RFC3339))
 				return nil
 			}
 		}
-		err := fmt.Sprintf("failed after max retries by %s | max retries = %d", s.sender.GetType(), v.MaxAttempts)
+		err := fmt.Sprintf("failed after max retries by %s at %s | max retries = %d", s.sender.GetType(), v.SentAt.Format(time.RFC3339), v.MaxAttempts)
 		return errors.New(err)
 
 	case *SMSNotification:
@@ -188,11 +188,11 @@ func (s *NotificationService) Send(message, recipient string) error {
 
 			if err == nil {
 				v.SentAt = time.Now()
-				fmt.Println(message + " " + recipient)
+				fmt.Println(message + " " + recipient + " at " + v.SentAt.Format(time.RFC3339))
 				return nil
 			}
 		}
-		err := fmt.Sprintf("failed after max retries by %s | max retries = %d", s.sender.GetType(), v.MaxAttempts)
+		err := fmt.Sprintf("failed after max retries by %s at %s | max retries = %d", s.sender.GetType(), v.SentAt.Format(time.RFC3339), v.MaxAttempts)
 		return errors.New(err)
 
 	case *PushNotification:
@@ -203,11 +203,11 @@ func (s *NotificationService) Send(message, recipient string) error {
 
 			if err == nil {
 				v.SentAt = time.Now()
-				fmt.Println(message + " " + recipient)
+				fmt.Println(message + " " + recipient + " at " + v.SentAt.Format(time.RFC3339))
 				return nil
 			}
 		}
-		err := fmt.Sprintf("failed after max retries by %s | max retries = %d", s.sender.GetType(), v.MaxAttempts)
+		err := fmt.Sprintf("failed after max retries by %s at %s | max retries = %d", s.sender.GetType(), v.SentAt.Format(time.RFC3339), v.MaxAttempts)
 		return errors.New(err)
 	}
 
